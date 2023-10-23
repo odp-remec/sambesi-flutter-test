@@ -1,7 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sambesi_flutter/domain/failures/failure.dart';
+import 'package:sambesi_flutter/domain/failures/general_failure.dart';
+import 'package:sambesi_flutter/domain/failures/server_failure.dart';
 import 'package:sambesi_flutter/domain/usecases/aufgabedurchfuehren_usecase.dart';
 import 'package:sambesi_flutter/domain/entities/aufgabedurchfuehren_entity.dart';
-import 'package:sambesi_flutter/domain/failures/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 
