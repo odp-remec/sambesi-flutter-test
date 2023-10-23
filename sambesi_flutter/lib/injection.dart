@@ -2,9 +2,11 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:sambesi_flutter/application/sambesi_bloc.dart';
 import 'package:sambesi_flutter/domain/repos/aufgabedurchfuehren_repo.dart';
+import 'package:sambesi_flutter/domain/repos/version_repo.dart';
 import 'package:sambesi_flutter/domain/usecases/aufgabedurchfuehren_usecase.dart';
 import 'package:sambesi_flutter/infrastructure/datasources/sambesi_backend_datasource.dart';
 import 'package:sambesi_flutter/infrastructure/repositorities/aufgabedurchfuehren_repo_impl.dart';
+import 'package:sambesi_flutter/infrastructure/repositorities/version_repo_impl.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -20,9 +22,9 @@ Future<void> init() async {
       AufgabeDurchfuehrenUsecase(aufgabeDurchfuehrenRepo: serviceLocator()));
 
   //! Repos
-  serviceLocator.registerLazySingleton<AufgabeDurchfuehrenRepo>(() =>
-      AufgabeDurchfuehrenRepoImpl(sambesiRemoteDatasource: serviceLocator()));
-
+  serviceLocator.registerLazySingleton<AufgabeDurchfuehrenRepo>(() => AufgabeDurchfuehrenRepoImpl(sambesiRemoteDatasource: serviceLocator()));
+  serviceLocator.registerLazySingleton<VersionRepo>(() => VersionRepoImpl(sambesiRemoteDatasource: serviceLocator()));
+  
   //! Datasources
   serviceLocator.registerLazySingleton<SambesiRemoteDatasource>(
       () => SambesiRemoteDatasourceImpl(client: serviceLocator()));

@@ -1,22 +1,22 @@
 import 'package:dartz/dartz.dart';
-import 'package:sambesi_flutter/domain/entities/aufgabedurchfuehren_entity.dart';
+import 'package:sambesi_flutter/domain/entities/version_entity.dart';
 import 'package:sambesi_flutter/domain/failures/failure.dart';
 import 'package:sambesi_flutter/domain/failures/general_failure.dart';
 import 'package:sambesi_flutter/domain/failures/server_failure.dart';
-import 'package:sambesi_flutter/domain/repos/aufgabedurchfuehren_repo.dart';
+import 'package:sambesi_flutter/domain/repos/version_repo.dart';
 import 'package:sambesi_flutter/infrastructure/datasources/sambesi_backend_datasource.dart';
 import 'package:sambesi_flutter/infrastructure/exceptions/server_exception.dart';
 
-class AufgabeDurchfuehrenRepoImpl implements AufgabeDurchfuehrenRepo{
+class VersionRepoImpl implements VersionRepo{
   final SambesiRemoteDatasource sambesiRemoteDatasource;
 
-  AufgabeDurchfuehrenRepoImpl({required this.sambesiRemoteDatasource});
+  VersionRepoImpl({required this.sambesiRemoteDatasource});
 
   @override
-  Future<Either<Failure, AufgabeDurchfuehrenEntity>> getAufgabenForDurchfuehrung() async {
+  Future<Either<Failure, VersionEntity>> getVersion() async {
     try{
-      final aufgabenForDurchfuehrung = await sambesiRemoteDatasource.getAlleAufgabenForDurchfuehrungFromApi();
-      return Right(aufgabenForDurchfuehrung);
+      final version = await sambesiRemoteDatasource.getVersion();
+      return Right(version);
     }
     catch (e){
         if(e.runtimeType is ServerException){
