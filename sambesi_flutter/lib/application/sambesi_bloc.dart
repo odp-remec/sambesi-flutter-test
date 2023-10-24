@@ -17,13 +17,13 @@ class SambesiBloc extends Bloc<SambesiEvent, SambesiState> {
     on<AufgabeRequestedEvent>((event, emit) async {
       emit(SambesiStateLoading());
 
-      Either<Failure, AufgabeDurchfuehrenEntity> adviceOrFailure =
+      Either<Failure, Iterable<AufgabeDurchfuehrenEntity>> adviceOrFailure =
           await usecases.getAufgaben();
 
       adviceOrFailure.fold(
           (failure) =>
               emit(SambesiStateError(message: _mapFailureToMessage(failure))),
-          (id) => emit(AufgabeLoaded(id: id.id)));
+          (id) => emit(AufgabeLoaded(id: id.first.id)));
     });
   }
 

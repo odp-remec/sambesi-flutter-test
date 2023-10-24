@@ -7,7 +7,7 @@ class AufgabeDurchfuehrenUsecase{
 
   AufgabeDurchfuehrenUsecase({required this.aufgabeDurchfuehrenRepo});
 
-  Future<Either<Failure, AufgabeDurchfuehrenEntity>> getAufgaben() async{
+  Future<Either<Failure, Iterable<AufgabeDurchfuehrenEntity>>> getAufgaben() async{
       return aufgabeDurchfuehrenRepo.getAufgabenForDurchfuehrung();
   }
 }

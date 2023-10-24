@@ -9,7 +9,7 @@ import 'package:sambesi_flutter/infrastructure/exceptions/server_exception.dart'
 
 abstract class SambesiRemoteDatasource {
   /// can throw Server-Exception
-  Future<AufgabeDurchfuehrenEntity> getAlleAufgabenForDurchfuehrungFromApi();
+  Future<Iterable<AufgabeDurchfuehrenEntity>> getAlleAufgabenForDurchfuehrungFromApi();
 
   Future<VersionEntity> getVersion();
 }
@@ -30,8 +30,8 @@ class SambesiRemoteDatasourceImpl implements SambesiRemoteDatasource {
     if (response.statusCode != 200) {
       throw ServerException();
     } else {
-      final data = json.decode(response.body);
-      return AufgabeDurchfuehrenDto.fromJson(data["slip"]);
+      final Iterable data = json.decode(response.body);
+      return List<AufgabeDurchfuehrenEntity>.from(data.map((model) => AufgabeDurchfuehrenDto.fromJson(model)));
     }
   }
   

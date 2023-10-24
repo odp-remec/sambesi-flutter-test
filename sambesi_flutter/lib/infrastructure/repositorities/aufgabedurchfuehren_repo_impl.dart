@@ -13,7 +13,7 @@ class AufgabeDurchfuehrenRepoImpl implements AufgabeDurchfuehrenRepo{
   AufgabeDurchfuehrenRepoImpl({required this.sambesiRemoteDatasource});
 
   @override
-  Future<Either<Failure, AufgabeDurchfuehrenEntity>> getAufgabenForDurchfuehrung() async {
+  Future<Either<Failure, Iterable<AufgabeDurchfuehrenEntity>>> getAufgabenForDurchfuehrung() async {
     try{
       final aufgabenForDurchfuehrung = await sambesiRemoteDatasource.getAlleAufgabenForDurchfuehrungFromApi();
       return Right(aufgabenForDurchfuehrung);
