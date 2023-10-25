@@ -33,7 +33,7 @@ class SambesiBloc extends Bloc<SambesiEvent, SambesiState> {
         return "Ups, API Error, please try again!";
       case GeneralFailure:
       default:
-        return "Ups, something gone wrong, please try again!";
+        return "Ups, something gone wrong, please try again! {}$failure";
     }
   }
 }
