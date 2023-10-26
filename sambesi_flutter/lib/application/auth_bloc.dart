@@ -5,7 +5,8 @@ import 'package:sambesi_flutter/domain/usecases/check_cached_account_usecase.dar
 import 'package:sambesi_flutter/domain/usecases/login_usecase.dart';
 import 'package:sambesi_flutter/domain/usecases/logout_usecase.dart';
 
-class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
+class AuthenticationBloc
+    extends Bloc<AuthenticationEvent, AuthenticationState> {
   final LoginUseCase loginUseCase;
   final CheckCachedAccountUseCase checkCachedAccountUseCase;
   final LogoutUseCase logoutUseCase;
@@ -17,7 +18,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   }) : super(AuthenticationInitial());
 
   @override
-  Stream<AuthenticationState> mapEventToState(AuthenticationEvent event) async* {
+  Stream<AuthenticationState> mapEventToState(
+      AuthenticationEvent event) async* {
     if (event is LoginEvent) {
       try {
         final token = await loginUseCase(redirect: event.redirect);

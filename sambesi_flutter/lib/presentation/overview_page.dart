@@ -42,7 +42,7 @@ class OverviewPage extends StatelessWidget {
                     color: themeData.colorScheme.secondary,
                   );
                 } else if (loadAufgabeState is AufgabeLoaded) {
-                  return AdviceField(advice: loadAufgabeState.id.toString());
+                  return AdviceField(id: loadAufgabeState.id.toString());
                 } else if (loadAufgabeState is SambesiStateError) {
                   return ErrorMessage(
                     message: loadAufgabeState.message,

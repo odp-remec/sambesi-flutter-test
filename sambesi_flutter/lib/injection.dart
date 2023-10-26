@@ -1,6 +1,5 @@
 import 'package:aad_oauth/aad_oauth.dart';
 import 'package:aad_oauth/model/config.dart';
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:sambesi_flutter/application/sambesi_bloc.dart';
@@ -29,29 +28,35 @@ Future<void> init() async {
   //! UseCases
   serviceLocator.registerLazySingleton(() =>
       AufgabeDurchfuehrenUsecase(aufgabeDurchfuehrenRepo: serviceLocator()));
-  serviceLocator.registerLazySingleton(() => LoginUseCase(repository: serviceLocator()));
-  serviceLocator.registerLazySingleton(() => LogoutUseCase(repository: serviceLocator()));
-  serviceLocator.registerLazySingleton(() => CheckCachedAccountUseCase(repository: serviceLocator()));
+  serviceLocator
+      .registerLazySingleton(() => LoginUseCase(repository: serviceLocator()));
+  serviceLocator
+      .registerLazySingleton(() => LogoutUseCase(repository: serviceLocator()));
+  serviceLocator.registerLazySingleton(
+      () => CheckCachedAccountUseCase(repository: serviceLocator()));
 
   //! Repos
-  serviceLocator.registerLazySingleton<AufgabeDurchfuehrenRepo>(() => AufgabeDurchfuehrenRepoImpl(sambesiRemoteDatasource: serviceLocator()));
-  serviceLocator.registerLazySingleton<VersionRepo>(() => VersionRepoImpl(sambesiRemoteDatasource: serviceLocator()));
-  serviceLocator.registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepositoryImpl(oauth: serviceLocator()));
-  
+  serviceLocator.registerLazySingleton<AufgabeDurchfuehrenRepo>(() =>
+      AufgabeDurchfuehrenRepoImpl(sambesiRemoteDatasource: serviceLocator()));
+  serviceLocator.registerLazySingleton<VersionRepo>(
+      () => VersionRepoImpl(sambesiRemoteDatasource: serviceLocator()));
+  serviceLocator.registerLazySingleton<AuthenticationRepository>(
+      () => AuthenticationRepositoryImpl(oauth: serviceLocator()));
+
   //! Datasources
-  serviceLocator.registerLazySingleton<SambesiRemoteDatasource>(
-      () => SambesiRemoteDatasourceImpl(client: serviceLocator(), authRepo: serviceLocator()));
+  serviceLocator.registerLazySingleton<SambesiRemoteDatasource>(() =>
+      SambesiRemoteDatasourceImpl(
+          client: serviceLocator(), authRepo: serviceLocator()));
 
   //! Extern
   serviceLocator.registerLazySingleton(() => http.Client());
   serviceLocator.registerLazySingleton(() {
-      final config = Config(
+    final config = Config(
         tenant: '4a552149-2523-4ee4-9ba9-554ee2d84067/',
         clientId: '84f6fd84-35ff-44fd-9c9f-1b2f1e44b34a',
-        scope: 'api://f8878c70-00ed-493f-b59a-dace542ffd57/api.sambesi.backend', 
+        scope: 'api://f8878c70-00ed-493f-b59a-dace542ffd57/api.sambesi.backend',
         navigatorKey: navigatorKey,
-        webUseRedirect: true
-      );
-      return AadOAuth(config);
-    });
+        webUseRedirect: true);
+    return AadOAuth(config);
+  });
 }
