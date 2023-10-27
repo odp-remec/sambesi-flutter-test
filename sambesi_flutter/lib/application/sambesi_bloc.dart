@@ -23,7 +23,7 @@ class SambesiBloc extends Bloc<SambesiEvent, SambesiState> {
       adviceOrFailure.fold(
           (failure) =>
               emit(SambesiStateError(message: _mapFailureToMessage(failure))),
-          (aufgaben) => emit(AufgabeLoaded(aufgaben: aufgaben.take(10))));
+          (aufgaben) => emit(AufgabeLoaded(aufgaben: aufgaben.toList())));
     });
   }
 

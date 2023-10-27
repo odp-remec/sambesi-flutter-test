@@ -10,7 +10,8 @@ import 'package:sambesi_flutter/infrastructure/exceptions/server_exception.dart'
 
 abstract class SambesiRemoteDatasource {
   /// can throw Server-Exception
-  Future<Iterable<AufgabeDurchfuehrenEntity>> getAlleAufgabenForDurchfuehrungFromApi();
+  Future<Iterable<AufgabeDurchfuehrenEntity>>
+      getAlleAufgabenForDurchfuehrungFromApi();
 
   Future<VersionEntity> getVersion();
 }
@@ -23,26 +24,34 @@ class SambesiRemoteDatasourceImpl implements SambesiRemoteDatasource {
   SambesiRemoteDatasourceImpl({required this.client, required this.authRepo});
 
   @override
-  Future<Iterable<AufgabeDurchfuehrenEntity>> getAlleAufgabenForDurchfuehrungFromApi() async {
+  Future<Iterable<AufgabeDurchfuehrenEntity>>
+      getAlleAufgabenForDurchfuehrungFromApi() async {
     String token = authRepo.getToken();
-    const String endPoint = "api/v7.5/instandhaltung/pendenzdurchfuehren?teilgebietId=0&anlageKnotenId=0&dienstId=0&nurFaelligeAnzeigen=false&loadAll=true&aufgabeStrategieTypFilter=2&aufgabeStrategieTypFilter=3&aufgabeStrategieTypFilter=4&aufgabeStrategieTypFilter=5&aufgabeStrategieTypFilter=6";
-    final response = await client.get(Uri.parse(apiUrl + endPoint), headers: {"Content-Type": "application/json", "Authorization": "Bearer $token"});
+
+    const String endPoint =
+        "api/v7.5/instandhaltung/aufgabehistorie?teilgebietId=0&anlageKnotenId=0&loadAll=true&isOnlyAktuellerAnlageKnoten=false&filterDatumVon=2020-01-01&filterDatumBis=2020-02-01&nurLetzteDurchfuehrung=false&nurVisierteAnzeigen=true&aufgabeStrategieTypen=1&aufgabeStrategieTypen=2&aufgabeStrategieTypen=3&aufgabeStrategieTypen=4&aufgabeStrategieTypen=5&aufgabeStrategieTypen=6&aufgabenStatus=3&aufgabenStatus=4&aufgabenStatus=6&aufgabenStatus=7&aufgabenStatus=9&aufgabenStatus=10&aufgabenStatus=11";
+    final response = await client.get(Uri.parse(apiUrl + endPoint), headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer $token"
+    });
 
     if (response.statusCode != 200) {
-      print("Kein 200: "+ response.statusCode.toString());
+      print("Kein 200: " + response.statusCode.toString());
       throw ServerException();
     } else {
       final Iterable data = json.decode(response.body);
       print("Data");
       print(data.length);
-      return List<AufgabeDurchfuehrenEntity>.from(data.map((model) => AufgabeDurchfuehrenDto.fromJson(model)));
+      return List<AufgabeDurchfuehrenEntity>.from(
+          data.map((model) => AufgabeDurchfuehrenDto.fromJson(model)));
     }
   }
-  
+
   @override
   Future<VersionEntity> getVersion() async {
     const String endPoint = "api/version";
-    final response = await client.get(Uri.parse(apiUrl + endPoint), headers: {});
+    final response =
+        await client.get(Uri.parse(apiUrl + endPoint), headers: {});
 
     if (response.statusCode != 200) {
       throw ServerException();

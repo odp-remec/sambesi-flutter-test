@@ -42,7 +42,12 @@ class OverviewPage extends StatelessWidget {
                     color: themeData.colorScheme.secondary,
                   );
                 } else if (loadAufgabeState is AufgabeLoaded) {
-                  return AufgabeListElement(aufgaben: loadAufgabeState.aufgaben.toList());
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      return AufgabeListElement(
+                          aufgabe: loadAufgabeState.aufgaben[index]);
+                    },
+                  );
                 } else if (loadAufgabeState is SambesiStateError) {
                   return ErrorMessage(
                     message: loadAufgabeState.message,
