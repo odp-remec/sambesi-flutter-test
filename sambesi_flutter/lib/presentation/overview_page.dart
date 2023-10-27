@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sambesi_flutter/application/sambesi_bloc.dart';
-import 'package:sambesi_flutter/presentation/widgets/advice_field.dart';
+import 'package:sambesi_flutter/presentation/widgets/aufgabe_list_element.dart';
 import 'package:sambesi_flutter/presentation/widgets/custom_button.dart';
 import 'package:sambesi_flutter/presentation/widgets/error_message.dart';
 
@@ -42,7 +42,7 @@ class OverviewPage extends StatelessWidget {
                     color: themeData.colorScheme.secondary,
                   );
                 } else if (loadAufgabeState is AufgabeLoaded) {
-                  return AdviceField(id: loadAufgabeState.id.toString());
+                  return AufgabeListElement(aufgaben: loadAufgabeState.aufgaben.toList());
                 } else if (loadAufgabeState is SambesiStateError) {
                   return ErrorMessage(
                     message: loadAufgabeState.message,

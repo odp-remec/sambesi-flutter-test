@@ -1,5 +1,7 @@
 class AufgabeDurchfuehrenEntity{
-  final int id;
+  final int aufgabeId;
+  final String aufgabeBezeichnung;
+  final String hilfetext;
 
-  AufgabeDurchfuehrenEntity({required this.id});
+  AufgabeDurchfuehrenEntity({required this.aufgabeId, required this.aufgabeBezeichnung, required this.hilfetext});
 }

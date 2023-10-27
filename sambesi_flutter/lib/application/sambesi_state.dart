@@ -8,8 +8,8 @@ class SambesiInitial extends SambesiState {}
 class SambesiStateLoading extends SambesiState {}
 
 class AufgabeLoaded extends SambesiState {
-  final int id;
-  AufgabeLoaded({required this.id});
+  final Iterable<AufgabeDurchfuehrenEntity> aufgaben;
+  AufgabeLoaded({required this.aufgaben});
 }
 
 class SambesiStateError extends SambesiState {
