@@ -19,7 +19,6 @@ void main() async {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AAD OAuth Demo',
+      title: 'Dev Teams Day Flutter Demo',
       navigatorKey: navigatorKey,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -35,7 +34,8 @@ class MyApp extends StatelessWidget {
       home: BlocProvider(
         create: (context) => AuthenticationBloc(
           loginUseCase: serviceLocator<LoginUseCase>(),
-          checkCachedAccountUseCase: serviceLocator<CheckCachedAccountUseCase>(),
+          checkCachedAccountUseCase:
+              serviceLocator<CheckCachedAccountUseCase>(),
           logoutUseCase: serviceLocator<LogoutUseCase>(),
         ),
         child: const AuthenticationWrapper(),
@@ -72,10 +72,10 @@ class AuthenticationWrapper extends StatelessWidget {
       builder: (context, state) {
         if (state is AuthenticationSuccess) {
           return BlocProvider(
-              create: (context) => SambesiBloc(usecases: serviceLocator<AufgabeDurchfuehrenUsecase>()),
-              child: const OverviewPage(),
-            );
-
+            create: (context) => SambesiBloc(
+                usecases: serviceLocator<AufgabeDurchfuehrenUsecase>()),
+            child: const OverviewPage(),
+          );
         }
         return const MyHomePage(title: "Login Page");
       },

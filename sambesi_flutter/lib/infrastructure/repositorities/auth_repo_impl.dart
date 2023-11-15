@@ -31,6 +31,10 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
     return token;
   }
 
+  removeToken() {
+    token = "";
+  }
+
   @override
   String getToken() {
     return token;
@@ -43,6 +47,7 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
 
   @override
   Future<void> logout() async {
+    removeToken();
     await oauth.logout();
   }
 }

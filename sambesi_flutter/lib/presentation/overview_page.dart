@@ -10,15 +10,10 @@ class OverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeData = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          "Sambesi Flutter",
-          style: themeData.textTheme.displayLarge?.copyWith(fontSize: 20),
-        ),
+        title: Text("Sambesi Flutter"),
       ),
       body: Center(
           child: Padding(
@@ -32,15 +27,9 @@ class OverviewPage extends StatelessWidget {
                   context), // init Event wenn Widget geladen wird
               builder: (context, loadAufgabeState) {
                 if (loadAufgabeState is SambesiInitial) {
-                  return Text(
-                    "Dashboard",
-                    style: themeData.textTheme.displayLarge
-                        ?.copyWith(fontSize: 20),
-                  );
+                  return Text("Dashboard");
                 } else if (loadAufgabeState is SambesiStateLoading) {
-                  return CircularProgressIndicator(
-                    color: themeData.colorScheme.secondary,
-                  );
+                  return CircularProgressIndicator(color: Colors.blue);
                 } else if (loadAufgabeState is AufgabeLoaded) {
                   return ListView.builder(
                     itemBuilder: (context, index) {

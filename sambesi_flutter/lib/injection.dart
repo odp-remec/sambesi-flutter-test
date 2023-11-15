@@ -53,7 +53,7 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton(() {
     final config = Config(
         tenant: '4a552149-2523-4ee4-9ba9-554ee2d84067/',
-        clientId: '84f6fd84-35ff-44fd-9c9f-1b2f1e44b34a',
+        clientId: '4521864f-c105-41ef-b858-fcf8866e68a1',
         scope: 'api://f8878c70-00ed-493f-b59a-dace542ffd57/api.sambesi.backend',
         navigatorKey: navigatorKey,
         webUseRedirect: true);

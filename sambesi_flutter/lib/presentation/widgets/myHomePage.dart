@@ -17,7 +17,6 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            // Buttons oder Widgets zum Steuern des BLoC.
             ElevatedButton(
               onPressed: () {
                 context
@@ -26,7 +25,12 @@ class MyHomePage extends StatelessWidget {
               },
               child: const Text("Login"),
             ),
-            // Fügen Sie andere Buttons oder Widgets hinzu, wie z.B. "Logout".
+            ElevatedButton(
+              onPressed: () {
+                context.read<AuthenticationBloc>().add(LogoutEvent());
+              },
+              child: const Text("Logout"),
+            )
           ],
         ),
       ),

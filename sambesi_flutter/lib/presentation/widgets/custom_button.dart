@@ -21,9 +21,10 @@ class CustomButton extends StatelessWidget {
               color: themeData.colorScheme.secondary),
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-              child: Text("Aufgaben abrufen",
-                  style: themeData.textTheme.displayLarge
-                      ?.copyWith(fontSize: 20))),
+              child: Text(
+                "Aufgaben abrufen",
+                textScaleFactor: 2,
+              )),
         ),
       ),
     );
