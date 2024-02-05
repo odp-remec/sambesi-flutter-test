@@ -29,7 +29,7 @@ class SambesiRemoteDatasourceImpl implements SambesiRemoteDatasource {
     String token = authRepo.getToken();
 
     const String endPoint =
-        "api/v7.5/instandhaltung/aufgabehistorie?teilgebietId=0&anlageKnotenId=0&loadAll=true&isOnlyAktuellerAnlageKnoten=false&filterDatumVon=2020-01-01&filterDatumBis=2020-02-01&nurLetzteDurchfuehrung=false&nurVisierteAnzeigen=true&aufgabeStrategieTypen=1&aufgabeStrategieTypen=2&aufgabeStrategieTypen=3&aufgabeStrategieTypen=4&aufgabeStrategieTypen=5&aufgabeStrategieTypen=6&aufgabenStatus=3&aufgabenStatus=4&aufgabenStatus=6&aufgabenStatus=7&aufgabenStatus=9&aufgabenStatus=10&aufgabenStatus=11";
+        "api/v7.6/instandhaltung/aufgabehistorie?teilgebietId=0&anlageKnotenId=0&loadAll=true&isOnlyAktuellerAnlageKnoten=false&filterDatumVon=2020-01-01&filterDatumBis=2020-02-01&nurLetzteDurchfuehrung=false&nurVisierteAnzeigen=true&aufgabeStrategieTypen=1&aufgabeStrategieTypen=2&aufgabeStrategieTypen=3&aufgabeStrategieTypen=4&aufgabeStrategieTypen=5&aufgabeStrategieTypen=6&aufgabenStatus=3&aufgabenStatus=4&aufgabenStatus=6&aufgabenStatus=7&aufgabenStatus=9&aufgabenStatus=10&aufgabenStatus=11";
     final response = await client.get(Uri.parse(apiUrl + endPoint), headers: {
       "Content-Type": "application/json",
       "Authorization": "Bearer $token"
